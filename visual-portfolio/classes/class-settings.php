@@ -599,6 +599,12 @@ class Visual_Portfolio_Settings {
 					'default' => 'on',
 				),
 				array(
+					'name'    => 'show_download_button',
+					'label'   => esc_html__( 'Display Download Button', 'visual-portfolio' ),
+					'type'    => 'toggle',
+					'default' => 'off',
+				),
+				array(
 					'name'    => 'show_close_button',
 					'label'   => esc_html__( 'Display Close Button', 'visual-portfolio' ),
 					'type'    => 'toggle',
@@ -658,19 +664,6 @@ class Visual_Portfolio_Settings {
 					),
 				),
 				array(
-					'name'      => 'show_download_button',
-					'label'     => esc_html__( 'Display Download Button', 'visual-portfolio' ),
-					'type'      => 'toggle',
-					'default'   => 'off',
-					'condition' => array(
-						array(
-							'control'  => '[name="vp_popup_gallery[vendor]"]',
-							'operator' => '===',
-							'value'    => 'fancybox',
-						),
-					),
-				),
-				array(
 					'name'      => 'show_slideshow',
 					'label'     => esc_html__( 'Display Slideshow', 'visual-portfolio' ),
 					'type'      => 'toggle',
@@ -686,9 +679,10 @@ class Visual_Portfolio_Settings {
 
 				// Quick View settings.
 				array(
-					'name'  => 'popup_quick_view_title',
-					'label' => esc_html__( 'Quick View', 'visual-portfolio' ),
-					'type'  => 'section_title',
+					'name'   => 'popup_quick_view_title',
+					'label'  => esc_html__( 'Quick View', 'visual-portfolio' ),
+					'type'   => 'section_title',
+					'is_pro' => true,
 				),
 				array(
 					'name'    => 'popup_quick_view_show_url_button',

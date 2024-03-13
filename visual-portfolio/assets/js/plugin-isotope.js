@@ -41,11 +41,16 @@ $doc.on('extendClass.vpf', (event, VP) => {
 						? {
 								// Use proper order for row items in Masonry layout only.
 								// Tiles layout may not work as expected with this option.
-								horizontalOrder: true,
+								horizontalOrder:
+									self.options.masonryHorizontalOrder ===
+									'true',
 						  }
 						: {},
 				transitionDuration: '0.3s',
-				stagger: '0.03s',
+				// We don't use stagger anymore because it is not
+				// working properly in a large galleries.
+				// When screen resized, latest items transition is too big and it looks ugly.
+				// stagger: '0.03s',
 				percentPosition: true,
 				originLeft: !isRtl,
 
@@ -98,7 +103,10 @@ $doc.on('addItems.vpf', (event, self, $items, removeExisting) => {
 		self.$items_wrap.append($items).isotope('appended', $items);
 	}
 
-	// idk why, but with timeout isotope recalculate all items fine.
+	// Idk why, but with timeout isotope recalculate all items fine.
+	// if we run only re-layout inside the timeout, there will be visible image blinking.
+	// So, we need to make these 2 calls.
+	self.initIsotope('layout');
 	setTimeout(() => {
 		self.initIsotope('layout');
 	}, 0);
