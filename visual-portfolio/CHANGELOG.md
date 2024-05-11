@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 
 > v3 Migration Guide – <https://visualportfolio.co/docs/troubleshooting/migration-to-v3/>
 
+= 3.3.4 - May 11, 2024 =
+
+* fixed dynamic selector block options rendering on the frontend.
+
+= 3.3.3 - May 11, 2024 =
+
+* fixed custom title tag XSS vulnerability (properly escape the custom tag and prevent using non-predefined values)
+
+= 3.3.2 - Apr 30, 2024 =
+
+* **Free + Pro:**
+* add more sort options in image galleries: Item Title, Item Description, Image Title, Image Description, Image Caption, Image Alt
+* improved image gallery sort code - images with empty field will be always placed after items with non-empty field
+* fixed the behavior of the "All" filters link when the portfolio archive page set as the home page
+<br />
+
+* **Pro:**
+* fixed Skin typography settings error in WP 6.5
+* fixed image gallery non-working Hover and Custom Popup settings when you change it
+* fixed horizontal thumbnails displaying in Fancybox
+* fixed displaying Pro plugin settings opacity
+
 = 3.3.1 - Mar 13, 2024 =
 
 * **Free + Pro:**
