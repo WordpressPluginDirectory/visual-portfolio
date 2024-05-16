@@ -1183,6 +1183,67 @@ class Visual_Portfolio_Get {
 	}
 
 	/**
+	 * Sort associative array by custom field.
+	 *
+	 * @param array  $array - Sortable array.
+	 * @param string $field - Array field by which sorting will take place.
+	 * @param string $order - Sorting order (asc and desc).
+	 * @return array
+	 */
+	public static function sort_array_by_field( $array, $field, $order = 'desc' ) {
+		$array_with_empty_fields     = array();
+		$array_with_not_empty_fields = array();
+
+		/**
+		 * We add a service key to the properties of array elements to sort fields of equal value by keys.
+		 * This is only necessary when sorting in descending order.
+		 */
+		if ( 'desc' === $order ) {
+			foreach ( $array as $key => &$element ) {
+				$element['__VP_SORT_ID__'] = $key;
+			}
+		}
+
+		usort(
+			$array,
+			function ( $a, $b ) use ( $field, $order ) {
+				// Primary comparison by field values.
+				$comparsion = 'asc' === $order ? strcmp( $a[ $field ], $b[ $field ] ) : strcmp( $b[ $field ], $a[ $field ] );
+
+				if ( 0 !== $comparsion ) {
+					return $comparsion;
+				}
+
+				// Secondary comparison by keys when values are equal.
+				if ( 'desc' === $order ) {
+					return strcmp( $b['__VP_SORT_ID__'], $a['__VP_SORT_ID__'] );
+				}
+
+				return 0;
+			}
+		);
+
+		// Clearing the array of service keys.
+		if ( 'desc' === $order ) {
+			foreach ( $array as $key => &$element ) {
+				unset( $element['__VP_SORT_ID__'] );
+			}
+		}
+
+		foreach ( $array as $item ) {
+			if ( empty( $item[ $field ] ) ) {
+				$array_with_empty_fields[] = $item;
+			} else {
+				$array_with_not_empty_fields[] = $item;
+			}
+		}
+
+		$array = array_merge( $array_with_not_empty_fields, $array_with_empty_fields );
+
+		return $array;
+	}
+
+	/**
 	 * Get query params array.
 	 *
 	 * @param array $options portfolio options.
@@ -1364,22 +1425,7 @@ class Visual_Portfolio_Get {
 						 * Now images with filled values ​​will be sorted first.
 						 * And empty images will be inserted later at the very end of the array.
 						 */
-						$non_empty_images = array();
-						$empty_images     = array();
-						$sort_keys        = array();
-
-						foreach ( $images as $image ) {
-							if ( empty( $image[ $custom_order ] ) ) {
-								$empty_images[] = $image;
-							} else {
-								$non_empty_images[] = $image;
-								$sort_keys[]        = $image[ $custom_order ];
-							}
-						}
-
-						array_multisort( $sort_keys, 'desc' === $custom_order_direction ? SORT_DESC : SORT_ASC, $non_empty_images );
-
-						$images = array_merge( $non_empty_images, $empty_images );
+						$images = self::sort_array_by_field( $images, $custom_order, $custom_order_direction );
 						break;
 					case 'rand':
 						// We don't need to randomize order for filter,
