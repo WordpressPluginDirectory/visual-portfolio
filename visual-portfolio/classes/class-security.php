@@ -222,7 +222,15 @@ class Visual_Portfolio_Security {
 		 */
 		if (
 			empty( $control['value_callback'] ) &&
-			! isset( $control['options'][ $attribute ] )
+			! isset( $control['options'][ $attribute ] ) &&
+			(
+				// Additional check for bool and values 'true', 'false'.
+				! is_bool( $attribute ) ||
+				(
+					is_bool( $attribute ) &&
+					! isset( $control['options'][ $attribute ? 'true' : 'false' ] )
+				)
+			)
 		) {
 			$attribute = self::reset_control_attribute_to_default( $attribute, $control );
 		}
@@ -398,6 +406,7 @@ class Visual_Portfolio_Security {
 									$attribute[ $key ][ $attribute_key ] = null;
 								}
 								break;
+							case 'id':
 							case 'custom_popup_image':
 							case 'hover_image':
 								$attribute[ $key ][ $attribute_key ] = self::sanitize_number( $media_attribute );
@@ -415,7 +424,6 @@ class Visual_Portfolio_Security {
 							case 'description':
 								$attribute[ $key ][ $attribute_key ] = wp_kses_post( wp_unslash( $media_attribute ) );
 								break;
-							case 'id':
 							case 'author':
 							case 'format':
 							case 'deep_link_pid':

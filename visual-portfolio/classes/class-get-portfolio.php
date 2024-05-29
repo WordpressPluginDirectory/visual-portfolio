@@ -1204,6 +1204,13 @@ class Visual_Portfolio_Get {
 			}
 		}
 
+		/**
+		 * In some cases,
+		 * The function may sort elements with the same values ​​differently in php 7 and php 8.
+		 * This is due to the following change in how the usort function works.
+		 * If two members compare as equal, they retain their original order.
+		 * Prior to PHP 8.0.0, their relative order in the sorted array was undefined.
+		 */
 		usort(
 			$array,
 			function ( $a, $b ) use ( $field, $order ) {
@@ -1442,11 +1449,17 @@ class Visual_Portfolio_Get {
 							}
 						}
 
-						if ( 'desc' === $custom_order_direction ) {
-							$images = array_reverse( $images );
-						}
-
 						break;
+				}
+
+				if (
+					'desc' === $custom_order_direction &&
+					(
+						'rand' === $custom_order ||
+						'default' === $custom_order
+					)
+				) {
+					$images = array_reverse( $images );
 				}
 			}
 
