@@ -1215,10 +1215,12 @@ class Visual_Portfolio_Get {
 			$array,
 			function ( $a, $b ) use ( $field, $order ) {
 				// Primary comparison by field values.
-				$comparsion = 'asc' === $order ? strcmp( $a[ $field ], $b[ $field ] ) : strcmp( $b[ $field ], $a[ $field ] );
+				if ( isset( $a[ $field ] ) && isset( $b[ $field ] ) ) {
+					$comparsion = 'asc' === $order ? strcmp( $a[ $field ], $b[ $field ] ) : strcmp( $b[ $field ], $a[ $field ] );
 
-				if ( 0 !== $comparsion ) {
-					return $comparsion;
+					if ( 0 !== $comparsion ) {
+						return $comparsion;
+					}
 				}
 
 				// Secondary comparison by keys when values are equal.
@@ -1427,6 +1429,10 @@ class Visual_Portfolio_Get {
 					case 'image_caption':
 					case 'image_alt':
 					case 'image_description':
+						if ( 'date' === $custom_order ) {
+							$custom_order = 'published_time';
+						}
+
 						/**
 						 * We've reworked this code to work correctly with empty sortable values.
 						 * Now images with filled values ​​will be sorted first.

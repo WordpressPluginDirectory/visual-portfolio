@@ -2,7 +2,7 @@
 /**
  * Plugin Name:  Visual Portfolio, Posts & Image Gallery
  * Description:  Modern gallery and portfolio plugin with advanced layouts editor. Clean and powerful gallery styles with enormous settings in the Gutenberg block.
- * Version:      3.3.8
+ * Version:      3.3.10
  * Author:       Visual Portfolio Team
  * Author URI:   https://visualportfolio.co/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=byline
  * License:      GPLv2 or later
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'VISUAL_PORTFOLIO_VERSION' ) ) {
-	define( 'VISUAL_PORTFOLIO_VERSION', '3.3.8' );
+	define( 'VISUAL_PORTFOLIO_VERSION', '3.3.10' );
 }
 
 if ( ! class_exists( 'Visual_Portfolio' ) ) :
@@ -216,6 +216,7 @@ if ( ! class_exists( 'Visual_Portfolio' ) ) :
 			require_once $this->plugin_path . 'classes/3rd/plugins/class-divi.php';
 			require_once $this->plugin_path . 'classes/3rd/plugins/class-elementor.php';
 			require_once $this->plugin_path . 'classes/3rd/plugins/class-ewww-image-optimizer.php';
+			require_once $this->plugin_path . 'classes/3rd/plugins/class-fancybox.php';
 			require_once $this->plugin_path . 'classes/3rd/plugins/class-imagify.php';
 			require_once $this->plugin_path . 'classes/3rd/plugins/class-jetpack.php';
 			require_once $this->plugin_path . 'classes/3rd/plugins/class-lazy-loading-responsive-images.php';
