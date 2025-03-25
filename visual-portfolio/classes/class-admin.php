@@ -49,7 +49,7 @@ class Visual_Portfolio_Admin {
 			add_menu_page(
 				visual_portfolio()->plugin_name,
 				visual_portfolio()->plugin_name,
-				'manage_options',
+				'edit_vp_lists',
 				'visual-portfolio-settings',
 				array( 'Visual_Portfolio_Settings', 'print_settings_page' ),
 				'dashicons-visual-portfolio',
@@ -1357,7 +1357,7 @@ class Visual_Portfolio_Admin {
 				'type'          => 'textarea',
 				'label'         => esc_html__( 'Custom Query', 'visual-portfolio' ),
 				// translators: %1$s - escaped url.
-				'description'   => sprintf( wp_kses( __( 'Build custom query according to WordPress Codex. See example here <a href="%1$s">%1$s</a>.', 'visual-portfolio' ), $allowed_protocols ), esc_url( 'https://visualportfolio.co/docs/portfolio-layouts/content-source/post-based/#custom-query' ) ),
+				'description'   => sprintf( wp_kses( __( 'Build custom query according to WordPress Codex. See example here <a href="%1$s">%1$s</a>.', 'visual-portfolio' ), $allowed_protocols ), esc_url( 'https://visualportfolio.co/docs/gallery-blocks/content-source/posts/#custom-query' ) ),
 				'name'          => 'posts_custom_query',
 				'default'       => '',
 				'cols'          => 30,

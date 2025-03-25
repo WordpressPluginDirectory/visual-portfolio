@@ -2,7 +2,7 @@
 /**
  * Plugin Name:  Visual Portfolio, Posts & Image Gallery
  * Description:  Modern gallery and portfolio plugin with advanced layouts editor. Clean and powerful gallery styles with enormous settings in the Gutenberg block.
- * Version:      3.3.10
+ * Version:      3.3.13
  * Author:       Visual Portfolio Team
  * Author URI:   https://visualportfolio.co/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=byline
  * License:      GPLv2 or later
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'VISUAL_PORTFOLIO_VERSION' ) ) {
-	define( 'VISUAL_PORTFOLIO_VERSION', '3.3.10' );
+	define( 'VISUAL_PORTFOLIO_VERSION', '3.3.13' );
 }
 
 if ( ! class_exists( 'Visual_Portfolio' ) ) :
@@ -97,7 +97,6 @@ if ( ! class_exists( 'Visual_Portfolio' ) ) :
 		 * Init options
 		 */
 		public function init() {
-			$this->plugin_name     = esc_html__( 'Visual Portfolio', 'visual-portfolio' );
 			$this->plugin_basename = plugin_basename( __FILE__ );
 			$this->plugin_path     = plugin_dir_path( __FILE__ );
 			$this->plugin_url      = plugin_dir_url( __FILE__ );
@@ -108,14 +107,28 @@ if ( ! class_exists( 'Visual_Portfolio' ) ) :
 				$this->pro_plugin_url  = plugin_dir_url( WP_PLUGIN_DIR . '/visual-portfolio-pro/class-visual-portfolio-pro.php' );
 			}
 
-			// load textdomain.
-			load_plugin_textdomain( 'visual-portfolio', false, basename( dirname( __FILE__ ) ) . '/languages' );
-
-			// Hooks.
-			add_action( 'init', array( $this, 'run_deferred_rewrite_rules' ), 20 );
-
 			// include helper files.
 			$this->include_dependencies();
+
+			// Hooks.
+			add_action( 'init', array( $this, 'earlier_init_hook' ), 5 );
+			add_action( 'init', array( $this, 'init_hook' ) );
+			add_action( 'init', array( $this, 'run_deferred_rewrite_rules' ), 20 );
+		}
+
+		/**
+		 * Earlier init hook to safety use plugin name in standard init hook.
+		 */
+		public function earlier_init_hook() {
+			$this->plugin_name = esc_html__( 'Visual Portfolio', 'visual-portfolio' );
+		}
+
+		/**
+		 * Init hook.
+		 */
+		public function init_hook() {
+			// load textdomain.
+			load_plugin_textdomain( 'visual-portfolio', false, basename( dirname( __FILE__ ) ) . '/languages' );
 		}
 
 		/**

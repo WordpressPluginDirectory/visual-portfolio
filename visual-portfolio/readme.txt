@@ -1,12 +1,12 @@
 # Visual Portfolio, Photo Gallery & Post Grid #
 
 * Contributors: visualportfolio, nko
-* Tags: portfolio, gallery, photo gallery, image gallery, wordpress gallery plugin
+* Tags: portfolio, gallery, gallery block, image gallery, wordpress gallery plugin
 * Donate link: https://visualportfolio.co/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=donate
 * Requires at least: 6.2
-* Tested up to: 6.6
+* Tested up to: 6.7
 * Requires PHP: 7.2
-* Stable tag: 3.3.10
+* Stable tag: 3.3.13
 * License: GPLv2 or later
 * License URI: <http://www.gnu.org/licenses/gpl-2.0.html>
 
@@ -324,6 +324,32 @@ Yes, Visual Portfolio has full translation and localization support via the `vis
 For more information, feel free to visit [Visual Portfolio official website](https://visualportfolio.co/?utm_source=wordpress.org&utm_medium=faq&utm_campaign=docs).
 
 ## Changelog ##
+
+= 3.3.13 - Mar 25, 2024 =
+
+* fixed broken Swiper when installed Elementor 3.28
+* fixed rare bug with displaying category links on archive pages
+* **Pro:**
+* added support for more Audio formats in popup Audio links (https://visualportfolio.co/docs/projects/project-formats/#supported-audio-platforms)
+* added support for more Video formats in popup Video links (https://visualportfolio.co/docs/projects/project-formats/#supported-video-platforms)
+* fixed wrong infinity scroll loading when permalinks set to Plain
+* fixed GIF hover image reset when hovering on inner overlay elements
+
+= 3.3.12 - Dec 20, 2024 =
+
+* fixed order by Image Title when both Title Source and Description Source is set to None
+* fixed Portfolio Manager role editing Saved Layouts when Project custom post type disabled
+* fixed image selection popup in block editor JS error
+
+= 3.3.11 - Dec 15, 2024 =
+
+* added WP 6.7 compatibility
+* fixed id attribute rendering
+* fixed some styles in editor
+* **Pro:**
+* fixed Advanced Click Actions sometimes not properly displaying a Popup
+* fixed title display error in popup caption
+* fixed Instagram integration - you must reconnect to use the Instagram API instead of deprecated Instagram Basic Display API. Learn more: <https://visualportfolio.co/docs/social-feeds/instagram/>
 
 = 3.3.10 - Sep 30, 2024 =
 
