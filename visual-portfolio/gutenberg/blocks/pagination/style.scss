@@ -1,0 +1,78 @@
+// Pagination block.
+.vp-block-pagination {
+	font-size: var(--wp--preset--font-size--medium, 1rem);
+	font-weight: 500;
+}
+
+// Previous and next blocks.
+.vp-block-pagination-next-arrow {
+	display: inline-block;
+	margin-left: 0.6ch;
+}
+.vp-block-pagination-previous-arrow {
+	display: inline-block;
+	margin-right: 0.6ch;
+}
+
+// Load more and infinite blocks.
+.vp-block-pagination-load-more-loading,
+.vp-block-pagination-infinite-loading {
+	display: none;
+}
+
+.vp-portfolio__loading {
+	.vp-block-pagination-load-more-loading,
+	.vp-block-pagination-infinite-loading {
+		display: block;
+	}
+	.vp-block-pagination-load-more > :first-child,
+	.vp-block-pagination-infinite > :first-child {
+		display: none;
+	}
+}
+
+// Numbers block
+.vp-block-pagination-numbers {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4ch;
+}
+
+// Fill style.
+.is-style-fill {
+	.vp-block-pagination-next,
+	.vp-block-pagination-previous {
+		border-radius: 9999px;
+		padding: 0.3em 0.8em;
+		background-color: color-mix(in srgb, currentColor 7%, transparent);
+		text-decoration: none;
+		font-weight: 400;
+
+		&:hover,
+		&:focus {
+			background-color: color-mix(in srgb, currentColor 10%, transparent);
+		}
+	}
+
+	.vp-block-pagination-numbers {
+		align-items: center;
+		font-weight: 400;
+		gap: 0.6ch;
+
+		a {
+			text-decoration: none;
+
+			&:hover,
+			&:focus {
+				opacity: 0.6;
+			}
+		}
+
+		.is-active {
+			border-radius: 9999px;
+			padding: 0.3em 0.8em;
+			background-color: color-mix(in srgb, currentColor 7%, transparent);
+			text-decoration: none;
+		}
+	}
+}

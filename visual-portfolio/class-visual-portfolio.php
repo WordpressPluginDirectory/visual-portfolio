@@ -2,9 +2,9 @@
 /**
  * Plugin Name:  Visual Portfolio, Posts & Image Gallery
  * Description:  Modern gallery and portfolio plugin with advanced layouts editor. Clean and powerful gallery styles with enormous settings in the Gutenberg block.
- * Version:      3.3.13
+ * Version:      3.3.16
  * Author:       Visual Portfolio Team
- * Author URI:   https://visualportfolio.co/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=byline
+ * Author URI:   https://www.visualportfolio.com/?utm_source=wordpress.org&utm_medium=readme&utm_campaign=byline
  * License:      GPLv2 or later
  * License URI:  https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:  visual-portfolio
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'VISUAL_PORTFOLIO_VERSION' ) ) {
-	define( 'VISUAL_PORTFOLIO_VERSION', '3.3.13' );
+	define( 'VISUAL_PORTFOLIO_VERSION', '3.3.16' );
 }
 
 if ( ! class_exists( 'Visual_Portfolio' ) ) :
@@ -196,6 +196,7 @@ if ( ! class_exists( 'Visual_Portfolio' ) ) :
 			require_once $this->plugin_path . 'gutenberg/utils/control-condition-check/index.php';
 			require_once $this->plugin_path . 'gutenberg/utils/control-get-value/index.php';
 			require_once $this->plugin_path . 'gutenberg/utils/controls-dynamic-css/index.php';
+			require_once $this->plugin_path . 'gutenberg/utils/convert-legacy-attributes/index.php';
 			require_once $this->plugin_path . 'gutenberg/utils/encode-decode/index.php';
 			require_once $this->plugin_path . 'classes/class-templates.php';
 			require_once $this->plugin_path . 'classes/class-parse-blocks.php';
@@ -210,8 +211,21 @@ if ( ! class_exists( 'Visual_Portfolio' ) ) :
 			require_once $this->plugin_path . 'classes/class-images.php';
 			require_once $this->plugin_path . 'classes/class-rest.php';
 			require_once $this->plugin_path . 'classes/class-get-portfolio.php';
+
 			require_once $this->plugin_path . 'classes/class-gutenberg.php';
-			require_once $this->plugin_path . 'classes/class-gutenberg-saved.php';
+			require_once $this->plugin_path . 'gutenberg/block/index.php';
+			require_once $this->plugin_path . 'gutenberg/blocks/loop/index.php';
+			require_once $this->plugin_path . 'gutenberg/block-saved/index.php';
+			require_once $this->plugin_path . 'gutenberg/blocks/filter-by-category-item/index.php';
+			require_once $this->plugin_path . 'gutenberg/blocks/filter-by-category/index.php';
+			require_once $this->plugin_path . 'gutenberg/blocks/pagination/index.php';
+			require_once $this->plugin_path . 'gutenberg/blocks/pagination-next/index.php';
+			require_once $this->plugin_path . 'gutenberg/blocks/pagination-numbers/index.php';
+			require_once $this->plugin_path . 'gutenberg/blocks/pagination-previous/index.php';
+			require_once $this->plugin_path . 'gutenberg/blocks/pagination-load-more/index.php';
+			require_once $this->plugin_path . 'gutenberg/blocks/pagination-infinite/index.php';
+			require_once $this->plugin_path . 'gutenberg/blocks/sort/index.php';
+
 			require_once $this->plugin_path . 'classes/class-shortcode.php';
 			require_once $this->plugin_path . 'classes/class-preview.php';
 			require_once $this->plugin_path . 'classes/class-custom-post-type.php';

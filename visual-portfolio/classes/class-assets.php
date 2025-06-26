@@ -711,6 +711,7 @@ class Visual_Portfolio_Assets {
 				'pswp_next'            => esc_attr__( 'Next (arrow right)', 'visual-portfolio' ),
 				'pswp_share_fb'        => esc_attr__( 'Share on Facebook', 'visual-portfolio' ),
 				'pswp_share_tw'        => esc_attr__( 'Tweet', 'visual-portfolio' ),
+				'pswp_share_x'         => esc_attr__( 'X', 'visual-portfolio' ),
 				'pswp_share_pin'       => esc_attr__( 'Pin it', 'visual-portfolio' ),
 				'pswp_download'        => esc_attr__( 'Download', 'visual-portfolio' ),
 
@@ -818,8 +819,8 @@ class Visual_Portfolio_Assets {
 	 * Add fallback for lazyloading.
 	 */
 	public static function add_lazyload_fallback_script() {
-		$css_url = visual_portfolio()->plugin_url . 'assets/css/lazyload-fallback.min.css?ver=' . VISUAL_PORTFOLIO_VERSION;
-		$js_url  = visual_portfolio()->plugin_url . 'assets/js/lazyload-fallback.min.js?ver=' . VISUAL_PORTFOLIO_VERSION;
+		$css_url = visual_portfolio()->plugin_url . 'build/assets/css/lazyload-fallback.css?ver=' . VISUAL_PORTFOLIO_VERSION;
+		$js_url  = visual_portfolio()->plugin_url . 'build/assets/js/lazyload-fallback.js?ver=' . VISUAL_PORTFOLIO_VERSION;
 
 		?>
 		<script>
@@ -911,7 +912,7 @@ class Visual_Portfolio_Assets {
 	/**
 	 * Parse blocks from content.
 	 *
-	 * @param array $blocks - blocks list.
+	 * @param array $blocks - blocks array.
 	 */
 	public function maybe_parse_blocks_from_content( $blocks ) {
 		if ( empty( $blocks ) ) {
